@@ -110,6 +110,11 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton{
+	color: rgb(255,255,255);
+}</string>
+          </property>
           <property name="text">
            <string>Menu</string>
           </property>
@@ -340,10 +345,18 @@ QPushButton:hover{
               <property name="geometry">
                <rect>
                 <x>0</x>
-                <y>70</y>
-                <width>861</width>
-                <height>481</height>
+                <y>120</y>
+                <width>611</width>
+                <height>371</height>
                </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLabel{
+	color:rgb(255,255,255);
+	font: 30pt &quot;.AppleSystemUIFont&quot;;
+}
+
+</string>
               </property>
               <property name="text">
                <string>Main Page</string>
@@ -351,17 +364,69 @@ QPushButton:hover{
              </widget>
             </widget>
             <widget class="QWidget" name="page_2">
+             <widget class="QTableWidget" name="table_CVE">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>140</y>
+                <width>671</width>
+                <height>351</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QTable{
+	color: rgb(255,255,255);
+	font: 60pt &quot;.AppleSystemUIFont&quot;;
+}</string>
+              </property>
+              <row>
+               <property name="text">
+                <string>1</string>
+               </property>
+              </row>
+              <column>
+               <property name="text">
+                <string>CVE</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>Description</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>CVSS</string>
+               </property>
+              </column>
+              <column>
+               <property name="text">
+                <string>link</string>
+               </property>
+              </column>
+              <item row="0" column="0">
+               <property name="text">
+                <string>CVE-2019-14271 </string>
+               </property>
+              </item>
+             </widget>
              <widget class="QLabel" name="page_2_label">
               <property name="geometry">
                <rect>
-                <x>110</x>
-                <y>120</y>
-                <width>501</width>
-                <height>371</height>
+                <x>-1</x>
+                <y>100</y>
+                <width>531</width>
+                <height>31</height>
                </rect>
               </property>
+              <property name="styleSheet">
+               <string notr="true">QLabel{
+	color:rgb(255,255,255);
+	font: 15pt &quot;.AppleSystemUIFont&quot;;
+}</string>
+              </property>
               <property name="text">
-               <string>Page 2</string>
+               <string>TextLabel</string>
               </property>
              </widget>
             </widget>
@@ -369,14 +434,225 @@ QPushButton:hover{
              <widget class="QLabel" name="page_3_label">
               <property name="geometry">
                <rect>
-                <x>100</x>
-                <y>200</y>
-                <width>471</width>
-                <height>291</height>
+                <x>30</x>
+                <y>130</y>
+                <width>311</width>
+                <height>41</height>
                </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLabel{
+	color:rgb(255,255,255);
+	font: 15pt &quot;.AppleSystemUIFont&quot;;
+}</string>
               </property>
               <property name="text">
                <string>Page 3</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_vul1">
+              <property name="geometry">
+               <rect>
+                <x>30</x>
+                <y>180</y>
+                <width>180</width>
+                <height>35</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLabel{
+	color:rgb(255,255,255);
+}</string>
+              </property>
+              <property name="text">
+               <string>Vul 1</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="Btn_vul1">
+              <property name="geometry">
+               <rect>
+                <x>250</x>
+                <y>190</y>
+                <width>113</width>
+                <height>32</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton
+{
+	color:rgb(255,255,255);
+}
+
+QPushButton:hover{
+	background-color: rgb(77, 77, 78);
+}</string>
+              </property>
+              <property name="text">
+               <string>Check</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_vul2">
+              <property name="geometry">
+               <rect>
+                <x>30</x>
+                <y>220</y>
+                <width>180</width>
+                <height>35</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLabel{
+	color:rgb(255,255,255);
+}</string>
+              </property>
+              <property name="text">
+               <string>Vul 2</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_vul3">
+              <property name="geometry">
+               <rect>
+                <x>30</x>
+                <y>260</y>
+                <width>180</width>
+                <height>35</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLabel{
+	color:rgb(255,255,255);
+}</string>
+              </property>
+              <property name="text">
+               <string>Vul 3</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_vul4">
+              <property name="geometry">
+               <rect>
+                <x>30</x>
+                <y>300</y>
+                <width>180</width>
+                <height>35</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLabel{
+	color:rgb(255,255,255);
+}</string>
+              </property>
+              <property name="text">
+               <string>Vul 4</string>
+              </property>
+             </widget>
+             <widget class="QLabel" name="label_vul5">
+              <property name="geometry">
+               <rect>
+                <x>30</x>
+                <y>340</y>
+                <width>180</width>
+                <height>35</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLabel{
+	color:rgb(255,255,255);
+}</string>
+              </property>
+              <property name="text">
+               <string>Vul 5</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="Btn_vul2">
+              <property name="geometry">
+               <rect>
+                <x>250</x>
+                <y>230</y>
+                <width>113</width>
+                <height>32</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton
+{
+	color:rgb(255,255,255);
+}
+
+QPushButton:hover{
+	background-color: rgb(77, 77, 78);
+}</string>
+              </property>
+              <property name="text">
+               <string>Check</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="Btn_vul3">
+              <property name="geometry">
+               <rect>
+                <x>250</x>
+                <y>270</y>
+                <width>113</width>
+                <height>32</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton
+{
+	color:rgb(255,255,255);
+}
+
+QPushButton:hover{
+	background-color: rgb(77, 77, 78);
+}</string>
+              </property>
+              <property name="text">
+               <string>Check</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="Btn_vul5">
+              <property name="geometry">
+               <rect>
+                <x>250</x>
+                <y>350</y>
+                <width>113</width>
+                <height>32</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton
+{
+	color:rgb(255,255,255);
+}
+
+QPushButton:hover{
+	background-color: rgb(77, 77, 78);
+}</string>
+              </property>
+              <property name="text">
+               <string>Check</string>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="Btn_vul4">
+              <property name="geometry">
+               <rect>
+                <x>250</x>
+                <y>310</y>
+                <width>113</width>
+                <height>32</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton
+{
+	color:rgb(255,255,255);
+}
+
+QPushButton:hover{
+	background-color: rgb(77, 77, 78);
+}</string>
+              </property>
+              <property name="text">
+               <string>Check</string>
               </property>
              </widget>
             </widget>
@@ -384,14 +660,137 @@ QPushButton:hover{
              <widget class="QLabel" name="page_4_label">
               <property name="geometry">
                <rect>
-                <x>210</x>
-                <y>220</y>
-                <width>371</width>
-                <height>161</height>
+                <x>20</x>
+                <y>110</y>
+                <width>111</width>
+                <height>41</height>
                </rect>
               </property>
+              <property name="styleSheet">
+               <string notr="true">QLabel{
+	color:rgb(255,255,255);
+	font: 15pt &quot;.AppleSystemUIFont&quot;;
+}</string>
+              </property>
               <property name="text">
-               <string>Page 4</string>
+               <string>Available Fixes</string>
+              </property>
+              <property name="textFormat">
+               <enum>Qt::PlainText</enum>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="Btn_fix">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>470</y>
+                <width>113</width>
+                <height>32</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+	color: rgb(255,255,255);
+}
+QPushButton:hover{
+	background-color: rgb(77, 77, 78);
+}</string>
+              </property>
+              <property name="text">
+               <string>Fix</string>
+              </property>
+             </widget>
+             <widget class="QRadioButton" name="radioButton_1">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>140</y>
+                <width>190</width>
+                <height>60</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QRadioButton{
+	color: rgb(255,255,255);
+}</string>
+              </property>
+              <property name="text">
+               <string>CVE-2019-14271 </string>
+              </property>
+             </widget>
+             <widget class="QRadioButton" name="radioButton_2">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>200</y>
+                <width>190</width>
+                <height>60</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QRadioButton{
+	color: rgb(255,255,255);
+}</string>
+              </property>
+              <property name="text">
+               <string>CVE-2019-13139</string>
+              </property>
+             </widget>
+             <widget class="QRadioButton" name="radioButton_3">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>260</y>
+                <width>190</width>
+                <height>60</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QRadioButton{
+	color: rgb(255,255,255);
+}</string>
+              </property>
+              <property name="text">
+               <string>CVE-2019-5736</string>
+              </property>
+             </widget>
+             <widget class="QRadioButton" name="radioButton_4">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>320</y>
+                <width>190</width>
+                <height>60</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QRadioButton{
+	color: rgb(255,255,255);
+}</string>
+              </property>
+              <property name="text">
+               <string>CVE-4-</string>
+              </property>
+             </widget>
+             <widget class="QRadioButton" name="radioButton_5">
+              <property name="geometry">
+               <rect>
+                <x>20</x>
+                <y>380</y>
+                <width>190</width>
+                <height>60</height>
+               </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QRadioButton{
+	color: rgb(255,255,255);
+}</string>
+              </property>
+              <property name="text">
+               <string>CVE-5-</string>
               </property>
              </widget>
             </widget>
@@ -404,6 +803,13 @@ QPushButton:hover{
                 <width>381</width>
                 <height>211</height>
                </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QLabel{
+	color:rgb(255,255,255);
+	font: 30pt &quot;.AppleSystemUIFont&quot;;
+}
+</string>
               </property>
               <property name="text">
                <string>Page 5</string>
