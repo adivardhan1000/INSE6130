@@ -46,6 +46,32 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     def navigate_to_view_all(self, msg):
         self.Page_widgets.setCurrentWidget(self.page_2)
         self.page_2_label.setText(msg)
+        
+        # Import data
+        with open('test_data.json', 'r') as f:
+            data = json.load(f)
+
+        # Transfer into df and get shape
+        cve = pd.DataFrame(data)
+        cve_row = cve.shape[0]
+        cve_col = cve.shape[1]
+
+        # Set table
+        self.Table_Cve.setColumnCount(cve_col)
+        self.Table_Cve.setRowCount(cve_row)
+        self.Table_Cve.setHorizontalHeaderLabels(cve.columns.values)
+        self.Table_Cve.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        font = self.Table_Cve.horizontalHeader().font()
+        font.setBold(True)
+        self.Table_Cve.horizontalHeader().setFont(font)
+        
+        # Add data into the table
+        for i in range(len(cve)):
+            for j in range(len(cve.columns)):
+                item = QTableWidgetItem(str(cve.iloc[i, j]))
+                item.setTextAlignment(Qt.AlignCenter)
+                self.Table_Cve.setItem(i, j, item)
+        
 
     def navigate_to_check(self, msg):
         self.Page_widgets.setCurrentWidget(self.page_3)
