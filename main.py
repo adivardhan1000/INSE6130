@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import QLabel, QMessageBox, QTableWidget, QTableWidgetItem,
 from PyQt5.QtCore import Qt
 import pandas as pd
 import json
+import os
 
 pyQTfileName = "test_ui.ui"
 
@@ -123,18 +124,48 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
     def fix_vulnerability(self):
+
+         # Import data
+        with open('test_data.json', 'r') as f:
+            data = json.load(f)
+
+        # Transfer into df and get shape
+        cve = pd.DataFrame(data)
+        cve_row = cve.shape[0]
+        cve_col = cve.shape[1]
+
         msgbox = QMessageBox()
         msg =''
         if self.radioButton_1.isChecked():
             msg = self.radioButton_1.text()
+            val=cve.loc[cve['CVE'] == msg, 'Script'].iloc[0]
+            str_val=str(val)
+            print(str_val)
+            os.system(str_val)
         elif self.radioButton_2.isChecked():
             msg = self.radioButton_2.text()
+            val=cve.loc[cve['CVE'] == msg, 'Script'].iloc[0]
+            str_val=str(val)
+            print(str_val)
+            os.system(str_val)
         elif self.radioButton_3.isChecked():
             msg = self.radioButton_3.text()
+            val=cve.loc[cve['CVE'] == msg, 'Script'].iloc[0]
+            str_val=str(val)
+            print(str_val)
+            os.system(str_val)
         elif self.radioButton_4.isChecked():
             msg = self.radioButton_4.text()
+            val=cve.loc[cve['CVE'] == msg, 'Script'].iloc[0]
+            str_val=str(val)
+            print(str_val)
+            os.system(str_val)
         elif self.radioButton_5.isChecked():
             msg = self.radioButton_5.text()
+            val=cve.loc[cve['CVE'] == msg, 'Script'].iloc[0]
+            str_val=str(val)
+            print(str_val)
+            os.system(str_val)
         msgbox.setText('Attempted to fix '+msg)
         msgbox.exec_()
 
