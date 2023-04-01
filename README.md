@@ -13,6 +13,19 @@ Security application development team :
 - Melvin
 - Xin
 
+sudo apt update
+sudo apt install software-properties-common
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt install python3.8
+sudo apt install python3.8
+sudo apt install python3.8-venv
+python3.8 -m venv myenv
+source ./myenv/bin/activate
+python3.8 -m pip install -r requirements.txt 
+python3.8 -m pip freeze > requirements.txt
+python3.8 main.py
+
 # To Setup Test UI
 - create a virtualenv and set it up to use python 3.7 (if you are using pycharm, make sure your python enterpreter is pointing to venv)
+- python3 -
 - using pip, install PyQt5
