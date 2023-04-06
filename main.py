@@ -2,7 +2,7 @@ import sys
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 from PyQt5.QtCore import QPropertyAnimation
 from PyQt5.QtGui import QFont
-from PyQt5.QtWidgets import QLabel, QMessageBox, QTableWidget, QTableWidgetItem, QHeaderView, QRadioButton
+from PyQt5.QtWidgets import QLabel, QMessageBox, QTableWidget, QTableWidgetItem, QHeaderView, QRadioButton, QFileDialog
 from PyQt5.QtCore import Qt
 import pandas as pd
 import json
@@ -100,9 +100,16 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.page_5_label.setText(msg)
 
         # Button action
+        self.btn_browser.clicked.connect(self.File_Add)
         self.btn_cve_add.clicked.connect(self.Cve_Add)
 
-
+    def File_Add(self):
+        # choose a file
+        fname = QFileDialog.getOpenFileName(self, 'Open file', os.getcwd(), 'python files (*.py)')
+        # split file path -> only file name
+        fnamelist = fname[0].split('/')
+        # set button text as file name
+        self.btn_browser.setText(fnamelist[len(fnamelist)-1])
 
     def Cve_Add(self):
         # Get attributes fo new cve
@@ -110,7 +117,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         NewDesc = self.cve_description.toPlainText()
         NewCVSS = float(self.cve_cvss.toPlainText())
         NewLink = self.cve_link.toPlainText()
-        NewScript = self.cve_script.toPlainText()
+        NewScript = self.btn_browser.text()
 
         # Store as dict
         NewDataDict = dict(CVE=NewName,
