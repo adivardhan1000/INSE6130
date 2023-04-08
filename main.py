@@ -19,11 +19,6 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
         self.radioButtons = []
-        self.radioButtons.append(self.radioButton_1)
-        self.radioButtons.append(self.radioButton_2)
-        self.radioButtons.append(self.radioButton_3)
-        self.radioButtons.append(self.radioButton_4)
-        self.radioButtons.append(self.radioButton_5)
         self.menu_button.clicked.connect(lambda: self.toggle_menu(250, True))
         self.Btn_1.clicked.connect(lambda: self.navigate_to_view_all('Display All Vulnerabilities'))
         self.Btn_3.clicked.connect(lambda: self.navigate_to_fix('Available Fixes'))
@@ -81,7 +76,6 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
                 item.setTextAlignment(Qt.AlignCenter)
                 self.Table_Cve.setItem(i, j, item)
 
-
     def navigate_to_fix(self, msg):
         self.Page_widgets.setCurrentWidget(self.page_4)
         self.page_4_label.setText(msg)
@@ -91,9 +85,9 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # Transfer into df and get shape
         cve = pd.DataFrame(data)
-        last_row = cve.iloc[-1:]
-        cve_name = cve.iloc[-1:]['CVE']
-        self.create_new_radioButton(str(cve_name))
+        cve_names = cve.loc[:, 'CVE'].tolist()
+        print(cve_names)
+        self.radioButtons = self.show_all_radio_buttons(cve_names)
 
     def navigate_to_add_new(self, msg):
         self.Page_widgets.setCurrentWidget(self.page_5)
@@ -135,83 +129,8 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             OldData = list(OldData)
         with open('test_data.json', 'w') as f_new:
             json.dump(OldData, f_new)
-
+        self.outstate.setStyleSheet('color: rgb(255,255,255)')
         self.outstate.setPlainText('Success!')
-
-
-
-
-
-    def fix_vulnerability_old(self):
-
-         # Import data
-        with open('test_data.json', 'r') as f:
-            data = json.load(f)
-
-        # Transfer into df and get shape
-        cve = pd.DataFrame(data)
-        cve_row = cve.shape[0]
-        cve_col = cve.shape[1]
-
-        ## create new button if new was added
-        last_row = data.iloc[-1:]
-        cve_name = last_row["CVE"]
-        new_button = self.create_new_radioButton(cve_name)
-        self.radioButtons.append(new_button)
-        new_button.show()
-
-        msgbox = QMessageBox()
-        msg =''
-        description = ''
-        str_val = ' '
-        if self.radioButton_1.isChecked():
-            msg = self.radioButton_1.text()
-            val=cve.loc[cve['CVE'] == msg, 'Script'].iloc[0]
-            description = cve.loc[cve['CVE'] == msg, 'Description'].iloc[0]
-            str_val=str(val)
-            print(str_val)
-            ##os.system(str_val)
-        elif self.radioButton_2.isChecked():
-            msg = self.radioButton_2.text()
-            val=cve.loc[cve['CVE'] == msg, 'Script'].iloc[0]
-            description = cve.loc[cve['CVE'] == msg, 'Description'].iloc[0]
-            str_val=str(val)
-            print(str_val)
-            ##os.system(str_val)
-        elif self.radioButton_3.isChecked():
-            msg = self.radioButton_3.text()
-            val=cve.loc[cve['CVE'] == msg, 'Script'].iloc[0]
-            description = cve.loc[cve['CVE'] == msg, 'Description'].iloc[0]
-            str_val=str(val)
-            print(str_val)
-            ##os.system(str_val)
-        elif self.radioButton_4.isChecked():
-            msg = self.radioButton_4.text()
-            val=cve.loc[cve['CVE'] == msg, 'Script'].iloc[0]
-            description = cve.loc[cve['CVE'] == msg, 'Description'].iloc[0]
-            str_val=str(val)
-            print(str_val)
-            ##os.system(str_val)
-        elif self.radioButton_5.isChecked():
-            msg = self.radioButton_5.text()
-            val=cve.loc[cve['CVE'] == msg, 'Script'].iloc[0]
-            description = cve.loc[cve['CVE'] == msg, 'Description'].iloc[0]
-            str_val=str(val)
-            print(str_val)
-            ##os.system(str_val)
-        msgbox.setText(description)
-        msgbox.setInformativeText("Do you want to proceed with fixing this vulnerability?");
-        msgbox.setStandardButtons(msgbox.Ok | msgbox.Cancel);
-        msgbox.setWindowTitle('Description')
-        ##msgbox.setDefaultButton(msgbox.Ok);
-        ret = msgbox.exec_()
-
-        if ret == int(msgbox.Ok):
-            print('user clicked ok to execute ' + str_val)
-            os.system(str_val)
-        else:
-            print('user clicked cancel')
-
 
     def fix_vulnerability(self):
         # Import data
@@ -248,25 +167,18 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         else:
             print('user clicked cancel')
 
-
-
-
-
-
-    def create_new_radioButton(self,text):
-        name = text.split('    ')[1].split('\n')[0]
-        print('CVE Name '+ str(len(name)))
-        for radioButton in self.radioButtons:
-            print(radioButton.text())
-        for radioButton in self.radioButtons:
-            if name.find(radioButton.text())>=0:
-                return
-        button = QRadioButton(name, self.page_4);
-        button.setFixedWidth(190)
-        button.setFixedHeight(60)
-        button.show()
-        self.radioButtons.append(button)
-
+    def show_all_radio_buttons(self, cve_names):
+        radio_buttons = []
+        for i, name in enumerate(cve_names):
+            ay = i*50+70
+            button = QRadioButton(name, self.page_4)
+            #button.setFixedWidth(190)
+            #button.setFixedHeight(60)
+            button.setGeometry(QtCore.QRect(0, ay, 190, 50))
+            button.setStyleSheet('color: rgb(255,255,255)')
+            button.show()
+            radio_buttons.append(button)
+        return radio_buttons
 
 
 if __name__ == "__main__":
