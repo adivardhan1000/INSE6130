@@ -240,28 +240,6 @@ QPushButton:hover{
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="Btn_2">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>40</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QPushButton{
-	color: rgb(255,255,255);
-	background_color: rgb(39,38,39);
-}
-QPushButton:hover{
-	background-color: rgb(77, 77, 78);
-}</string>
-               </property>
-               <property name="text">
-                <string>Check</string>
-               </property>
-              </widget>
-             </item>
-             <item>
               <widget class="QPushButton" name="Btn_3">
                <property name="minimumSize">
                 <size>
@@ -392,6 +370,9 @@ QPushButton:hover{
                 <height>421</height>
                </rect>
               </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);</string>
+              </property>
              </widget>
             </widget>
             <widget class="QWidget" name="page_3">
@@ -399,9 +380,9 @@ QPushButton:hover{
               <property name="geometry">
                <rect>
                 <x>30</x>
-                <y>130</y>
-                <width>311</width>
-                <height>41</height>
+                <y>90</y>
+                <width>471</width>
+                <height>81</height>
                </rect>
               </property>
               <property name="styleSheet">
@@ -624,8 +605,8 @@ QPushButton:hover{
              <widget class="QLabel" name="page_4_label">
               <property name="geometry">
                <rect>
-                <x>20</x>
-                <y>110</y>
+                <x>0</x>
+                <y>0</y>
                 <width>111</width>
                 <height>41</height>
                </rect>
@@ -650,7 +631,7 @@ QPushButton:hover{
               <property name="geometry">
                <rect>
                 <x>20</x>
-                <y>470</y>
+                <y>490</y>
                 <width>113</width>
                 <height>32</height>
                </rect>
@@ -667,94 +648,25 @@ QPushButton:hover{
                <string>Fix</string>
               </property>
              </widget>
-             <widget class="QRadioButton" name="radioButton_1">
+             <widget class="QPushButton" name="Btn_check">
               <property name="geometry">
                <rect>
-                <x>20</x>
-                <y>140</y>
-                <width>190</width>
-                <height>60</height>
+                <x>210</x>
+                <y>490</y>
+                <width>113</width>
+                <height>32</height>
                </rect>
               </property>
               <property name="styleSheet">
-               <string notr="true">QRadioButton{
+               <string notr="true">QPushButton{
 	color: rgb(255,255,255);
+}
+QPushButton:hover{
+	background-color: rgb(77, 77, 78);
 }</string>
               </property>
               <property name="text">
-               <string>CVE-2019-14271 </string>
-              </property>
-             </widget>
-             <widget class="QRadioButton" name="radioButton_2">
-              <property name="geometry">
-               <rect>
-                <x>20</x>
-                <y>200</y>
-                <width>190</width>
-                <height>60</height>
-               </rect>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QRadioButton{
-	color: rgb(255,255,255);
-}</string>
-              </property>
-              <property name="text">
-               <string>CVE-2019-13139</string>
-              </property>
-             </widget>
-             <widget class="QRadioButton" name="radioButton_3">
-              <property name="geometry">
-               <rect>
-                <x>20</x>
-                <y>260</y>
-                <width>190</width>
-                <height>60</height>
-               </rect>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QRadioButton{
-	color: rgb(255,255,255);
-}</string>
-              </property>
-              <property name="text">
-               <string>CVE-2019-5736</string>
-              </property>
-             </widget>
-             <widget class="QRadioButton" name="radioButton_4">
-              <property name="geometry">
-               <rect>
-                <x>20</x>
-                <y>320</y>
-                <width>190</width>
-                <height>60</height>
-               </rect>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QRadioButton{
-	color: rgb(255,255,255);
-}</string>
-              </property>
-              <property name="text">
-               <string>CVE-4-</string>
-              </property>
-             </widget>
-             <widget class="QRadioButton" name="radioButton_5">
-              <property name="geometry">
-               <rect>
-                <x>20</x>
-                <y>380</y>
-                <width>190</width>
-                <height>60</height>
-               </rect>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QRadioButton{
-	color: rgb(255,255,255);
-}</string>
-              </property>
-              <property name="text">
-               <string>CVE-5-</string>
+               <string>Check</string>
               </property>
              </widget>
             </widget>
@@ -784,8 +696,8 @@ QPushButton:hover{
                <rect>
                 <x>20</x>
                 <y>130</y>
-                <width>71</width>
-                <height>41</height>
+                <width>121</width>
+                <height>51</height>
                </rect>
               </property>
               <property name="frameShape">
@@ -795,7 +707,7 @@ QPushButton:hover{
                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:11.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt; color:#ffffff;&quot;&gt;Name&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
              </widget>
@@ -808,14 +720,17 @@ p, li { white-space: pre-wrap; }
                 <height>41</height>
                </rect>
               </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);</string>
+              </property>
              </widget>
              <widget class="QTextBrowser" name="textBrowser_2">
               <property name="geometry">
                <rect>
                 <x>20</x>
                 <y>190</y>
-                <width>171</width>
-                <height>41</height>
+                <width>201</width>
+                <height>51</height>
                </rect>
               </property>
               <property name="frameShape">
@@ -825,7 +740,7 @@ p, li { white-space: pre-wrap; }
                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:11.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt; color:#ffffff;&quot;&gt;Description&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
              </widget>
@@ -838,6 +753,9 @@ p, li { white-space: pre-wrap; }
                 <height>191</height>
                </rect>
               </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);</string>
+              </property>
              </widget>
              <widget class="QTextBrowser" name="textBrowser_3">
               <property name="geometry">
@@ -845,7 +763,7 @@ p, li { white-space: pre-wrap; }
                 <x>20</x>
                 <y>400</y>
                 <width>171</width>
-                <height>41</height>
+                <height>51</height>
                </rect>
               </property>
               <property name="frameShape">
@@ -855,7 +773,7 @@ p, li { white-space: pre-wrap; }
                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:11.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt; color:#ffffff;&quot;&gt;CVSS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
              </widget>
@@ -868,6 +786,9 @@ p, li { white-space: pre-wrap; }
                 <height>41</height>
                </rect>
               </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);</string>
+              </property>
              </widget>
              <widget class="QTextBrowser" name="textBrowser_4">
               <property name="geometry">
@@ -875,7 +796,7 @@ p, li { white-space: pre-wrap; }
                 <x>20</x>
                 <y>460</y>
                 <width>171</width>
-                <height>41</height>
+                <height>51</height>
                </rect>
               </property>
               <property name="frameShape">
@@ -885,7 +806,7 @@ p, li { white-space: pre-wrap; }
                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:11.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt; color:#ffffff;&quot;&gt;Link&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
              </widget>
@@ -898,6 +819,9 @@ p, li { white-space: pre-wrap; }
                 <height>41</height>
                </rect>
               </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);</string>
+              </property>
              </widget>
              <widget class="QTextBrowser" name="textBrowser_5">
               <property name="geometry">
@@ -905,7 +829,7 @@ p, li { white-space: pre-wrap; }
                 <x>20</x>
                 <y>520</y>
                 <width>171</width>
-                <height>41</height>
+                <height>51</height>
                </rect>
               </property>
               <property name="frameShape">
@@ -915,7 +839,7 @@ p, li { white-space: pre-wrap; }
                <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:11.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'SimSun'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt; color:#ffffff;&quot;&gt;Script&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="overwriteMode">
@@ -930,6 +854,9 @@ p, li { white-space: pre-wrap; }
                 <width>431</width>
                 <height>41</height>
                </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);</string>
               </property>
              </widget>
              <widget class="QPushButton" name="btn_cve_add">
@@ -1158,8 +1085,143 @@ p, li { white-space: pre-wrap; }
                 <height>51</height>
                </rect>
               </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);
+</string>
+              </property>
               <property name="frameShape">
                <enum>QFrame::NoFrame</enum>
+              </property>
+             </widget>
+             <widget class="QPushButton" name="btn_browser">
+              <property name="geometry">
+               <rect>
+                <x>240</x>
+                <y>520</y>
+                <width>431</width>
+                <height>41</height>
+               </rect>
+              </property>
+              <property name="palette">
+               <palette>
+                <active>
+                 <colorrole role="Button">
+                  <brush brushstyle="SolidPattern">
+                   <color alpha="255">
+                    <red>71</red>
+                    <green>71</green>
+                    <blue>72</blue>
+                   </color>
+                  </brush>
+                 </colorrole>
+                 <colorrole role="ButtonText">
+                  <brush brushstyle="SolidPattern">
+                   <color alpha="255">
+                    <red>255</red>
+                    <green>255</green>
+                    <blue>255</blue>
+                   </color>
+                  </brush>
+                 </colorrole>
+                 <colorrole role="Base">
+                  <brush brushstyle="SolidPattern">
+                   <color alpha="255">
+                    <red>71</red>
+                    <green>71</green>
+                    <blue>72</blue>
+                   </color>
+                  </brush>
+                 </colorrole>
+                 <colorrole role="Window">
+                  <brush brushstyle="SolidPattern">
+                   <color alpha="255">
+                    <red>71</red>
+                    <green>71</green>
+                    <blue>72</blue>
+                   </color>
+                  </brush>
+                 </colorrole>
+                </active>
+                <inactive>
+                 <colorrole role="Button">
+                  <brush brushstyle="SolidPattern">
+                   <color alpha="255">
+                    <red>71</red>
+                    <green>71</green>
+                    <blue>72</blue>
+                   </color>
+                  </brush>
+                 </colorrole>
+                 <colorrole role="ButtonText">
+                  <brush brushstyle="SolidPattern">
+                   <color alpha="255">
+                    <red>255</red>
+                    <green>255</green>
+                    <blue>255</blue>
+                   </color>
+                  </brush>
+                 </colorrole>
+                 <colorrole role="Base">
+                  <brush brushstyle="SolidPattern">
+                   <color alpha="255">
+                    <red>71</red>
+                    <green>71</green>
+                    <blue>72</blue>
+                   </color>
+                  </brush>
+                 </colorrole>
+                 <colorrole role="Window">
+                  <brush brushstyle="SolidPattern">
+                   <color alpha="255">
+                    <red>71</red>
+                    <green>71</green>
+                    <blue>72</blue>
+                   </color>
+                  </brush>
+                 </colorrole>
+                </inactive>
+                <disabled>
+                 <colorrole role="Button">
+                  <brush brushstyle="SolidPattern">
+                   <color alpha="255">
+                    <red>71</red>
+                    <green>71</green>
+                    <blue>72</blue>
+                   </color>
+                  </brush>
+                 </colorrole>
+                 <colorrole role="ButtonText">
+                  <brush brushstyle="SolidPattern">
+                   <color alpha="255">
+                    <red>120</red>
+                    <green>120</green>
+                    <blue>120</blue>
+                   </color>
+                  </brush>
+                 </colorrole>
+                 <colorrole role="Base">
+                  <brush brushstyle="SolidPattern">
+                   <color alpha="255">
+                    <red>71</red>
+                    <green>71</green>
+                    <blue>72</blue>
+                   </color>
+                  </brush>
+                 </colorrole>
+                 <colorrole role="Window">
+                  <brush brushstyle="SolidPattern">
+                   <color alpha="255">
+                    <red>71</red>
+                    <green>71</green>
+                    <blue>72</blue>
+                   </color>
+                  </brush>
+                 </colorrole>
+                </disabled>
+               </palette>
+              </property>
+              <property name="text">
+               <string>Browser</string>
               </property>
              </widget>
             </widget>

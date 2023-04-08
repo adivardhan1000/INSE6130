@@ -35,6 +35,9 @@ Security application development team :
 
 > python3.8 main.py
 
+If error with qt platform crashing,
+> sudo apt-get install qt5-default
+
 # To Setup Test UI
 - create a virtualenv and set it up to use python 3.7 (if you are using pycharm, make sure your python enterpreter is pointing to venv)
 - python3 -
