@@ -370,6 +370,9 @@ QPushButton:hover{
                 <height>421</height>
                </rect>
               </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);</string>
+              </property>
              </widget>
             </widget>
             <widget class="QWidget" name="page_3">
@@ -602,8 +605,8 @@ QPushButton:hover{
              <widget class="QLabel" name="page_4_label">
               <property name="geometry">
                <rect>
-                <x>20</x>
-                <y>110</y>
+                <x>0</x>
+                <y>30</y>
                 <width>111</width>
                 <height>41</height>
                </rect>
@@ -628,7 +631,7 @@ QPushButton:hover{
               <property name="geometry">
                <rect>
                 <x>20</x>
-                <y>470</y>
+                <y>490</y>
                 <width>113</width>
                 <height>32</height>
                </rect>
@@ -643,96 +646,6 @@ QPushButton:hover{
               </property>
               <property name="text">
                <string>Fix</string>
-              </property>
-             </widget>
-             <widget class="QRadioButton" name="radioButton_1">
-              <property name="geometry">
-               <rect>
-                <x>20</x>
-                <y>140</y>
-                <width>190</width>
-                <height>60</height>
-               </rect>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QRadioButton{
-	color: rgb(255,255,255);
-}</string>
-              </property>
-              <property name="text">
-               <string>CVE-2019-14271 </string>
-              </property>
-             </widget>
-             <widget class="QRadioButton" name="radioButton_2">
-              <property name="geometry">
-               <rect>
-                <x>20</x>
-                <y>200</y>
-                <width>190</width>
-                <height>60</height>
-               </rect>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QRadioButton{
-	color: rgb(255,255,255);
-}</string>
-              </property>
-              <property name="text">
-               <string>CVE-2019-13139</string>
-              </property>
-             </widget>
-             <widget class="QRadioButton" name="radioButton_3">
-              <property name="geometry">
-               <rect>
-                <x>20</x>
-                <y>260</y>
-                <width>190</width>
-                <height>60</height>
-               </rect>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QRadioButton{
-	color: rgb(255,255,255);
-}</string>
-              </property>
-              <property name="text">
-               <string>CVE-2019-5736</string>
-              </property>
-             </widget>
-             <widget class="QRadioButton" name="radioButton_4">
-              <property name="geometry">
-               <rect>
-                <x>20</x>
-                <y>320</y>
-                <width>190</width>
-                <height>60</height>
-               </rect>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QRadioButton{
-	color: rgb(255,255,255);
-}</string>
-              </property>
-              <property name="text">
-               <string>CVE-2018-10892</string>
-              </property>
-             </widget>
-             <widget class="QRadioButton" name="radioButton_5">
-              <property name="geometry">
-               <rect>
-                <x>20</x>
-                <y>380</y>
-                <width>190</width>
-                <height>60</height>
-               </rect>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">QRadioButton{
-	color: rgb(255,255,255);
-}</string>
-              </property>
-              <property name="text">
-               <string>CVE-2018-15664</string>
               </property>
              </widget>
             </widget>
@@ -786,6 +699,9 @@ p, li { white-space: pre-wrap; }
                 <height>41</height>
                </rect>
               </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);</string>
+              </property>
              </widget>
              <widget class="QTextBrowser" name="textBrowser_2">
               <property name="geometry">
@@ -815,6 +731,9 @@ p, li { white-space: pre-wrap; }
                 <width>431</width>
                 <height>191</height>
                </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);</string>
               </property>
              </widget>
              <widget class="QTextBrowser" name="textBrowser_3">
@@ -846,6 +765,9 @@ p, li { white-space: pre-wrap; }
                 <height>41</height>
                </rect>
               </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);</string>
+              </property>
              </widget>
              <widget class="QTextBrowser" name="textBrowser_4">
               <property name="geometry">
@@ -875,6 +797,9 @@ p, li { white-space: pre-wrap; }
                 <width>431</width>
                 <height>41</height>
                </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);</string>
               </property>
              </widget>
              <widget class="QTextBrowser" name="textBrowser_5">
@@ -908,6 +833,9 @@ p, li { white-space: pre-wrap; }
                 <width>431</width>
                 <height>41</height>
                </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);</string>
               </property>
              </widget>
              <widget class="QPushButton" name="btn_cve_add">
@@ -1135,6 +1063,10 @@ p, li { white-space: pre-wrap; }
                 <width>231</width>
                 <height>51</height>
                </rect>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);
+</string>
               </property>
               <property name="frameShape">
                <enum>QFrame::NoFrame</enum>
