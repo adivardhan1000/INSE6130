@@ -38,6 +38,10 @@ Security application development team :
 If error with qt platform crashing,
 > sudo apt-get install qt5-default
 
+Note:
+These steps are written based on the assumption that many older ubuntu versions have python3.6 installed and we need the script to run on python3.8. If your machine already has python3.8 as the default version, you can skip python3.8 installation and using python3 instead of python3.8 when creating env, or pip install or running script.
+
+
 # To Setup Test UI
 - create a virtualenv and set it up to use python 3.7 (if you are using pycharm, make sure your python enterpreter is pointing to venv)
 - python3 -
