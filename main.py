@@ -161,7 +161,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     def show_all_radio_buttons(self, cve_names):
         radio_buttons = []
         for i, name in enumerate(cve_names):
-            ay = i*50+70
+            ay = i*50+50
             button = QRadioButton(name, self.page_4)
             #button.setFixedWidth(190)
             #button.setFixedHeight(60)
