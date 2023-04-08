@@ -165,7 +165,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
         if ret == int(msgbox.Ok):
             print('user clicked ok to execute ' + str_val)
-            os.system(str_val)
+            os.system("python3 "+ str_val) #invoke .py file to fix
         else:
             print('user clicked cancel')
 
