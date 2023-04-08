@@ -42,3 +42,9 @@ If error with qt platform crashing,
 - create a virtualenv and set it up to use python 3.7 (if you are using pycharm, make sure your python enterpreter is pointing to venv)
 - python3 -
 - using pip, install PyQt5
+
+
+# Fix scripts:
+1. Each file is written for a particular CVE. The file has 2 functions: check() and fix(). 
+2. check() returns True if the docker is vulnerable to that CVE otherwise False. It also returns the logs when the script has ran.
+3. fix() returns True if the fix was successful without any errors otherwise it returns False. It also returns the logs when the script has ran.
