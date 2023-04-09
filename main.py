@@ -69,6 +69,8 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         font = self.Table_Cve.horizontalHeader().font()
         font.setBold(True)
         self.Table_Cve.horizontalHeader().setFont(font)
+        self.Table_Cve.horizontalHeader().setStyleSheet("color: rgb(0, 0, 0)")
+        self.Table_Cve.verticalHeader().setStyleSheet("color: rgb(0, 0, 0)")
         # Add data into the table
         for i in range(len(cve)):
             for j in range(len(cve.columns)):
@@ -94,11 +96,11 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.page_5_label.setText(msg)
 
         # Button action
-        self.btn_browser.clicked.connect(self.File_Add)
-        self.btn_cve_add.clicked.connect(self.Cve_Add)
+        self.btn_browser.clicked.connect(self.file_add)
+        self.btn_cve_add.clicked.connect(self.cve_add)
+        self.btn_cve_modify.clicked.connect(self.cve_modify)
 
-
-    def File_Add(self):
+    def file_add(self):
         # choose a file
         fname = QFileDialog.getOpenFileName(self, 'Open file', os.getcwd(), 'python files (*.py)')
         # split file path -> only file name
@@ -106,8 +108,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         # set button text as file name
         self.btn_browser.setText(fnamelist[len(fnamelist)-1])
 
-
-    def Cve_Add(self):
+    def cve_add(self):
         # Get attributes fo new cve
         NewName = self.cve_name.toPlainText()
         NewDesc = self.cve_description.toPlainText()
@@ -133,6 +134,43 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             json.dump(OldData, f_new)
         self.outstate.setStyleSheet('color: rgb(255,255,255)')
         self.outstate.setPlainText('Success!')
+    
+    def cve_modify(self):
+        # Get attributes fo new cve
+        NewName = self.cve_name.toPlainText()
+        NewDesc = self.cve_description.toPlainText()
+        NewCVSS = self.cve_cvss.toPlainText()
+        NewLink = self.cve_link.toPlainText()
+        NewScript = self.btn_browser.text()
+
+        # Open the json file to read cve information
+        with open('test_data.json', 'r') as f:
+            OldData = json.load(f)
+
+        # Check whether the cve modified exists in the json file
+        CveNameList = []
+        for i in OldData:
+            CveNameList.append(i['CVE'])
+        if NewName in CveNameList:
+            index = CveNameList.index(NewName)
+            if len(NewDesc) > 0:
+                OldData[index]['Description'] = NewDesc
+            if len(NewCVSS) > 0:
+                NewCVSS = float(NewCVSS)
+                OldData[index]['CVSS'] = NewCVSS
+            if len(NewLink) > 0:
+                OldData[index]['Link'] = NewLink
+            if len(NewScript) > 0 and NewScript != 'Browser':
+                OldData[index]['Script'] = NewScript
+
+            # update json file
+            with open('test_data.json', 'w') as f_new:
+                json.dump(OldData, f_new)
+            self.outstate.setStyleSheet('color: rgb(255,255,255)')
+            self.outstate.setPlainText('Success!')
+        else:
+            self.outstate.setStyleSheet('color: rgb(255,255,255)')
+            self.outstate.setPlainText(f"{NewName} does not exist!\n Please try again!")
 
     def fix_vulnerability(self):
         # Import data
