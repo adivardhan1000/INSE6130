@@ -2,7 +2,8 @@ import sys
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 from PyQt5.QtCore import QPropertyAnimation
 from PyQt5.QtGui import QFont
-from PyQt5.QtWidgets import QLabel, QMessageBox, QTableWidget, QTableWidgetItem, QHeaderView, QRadioButton, QFileDialog
+from PyQt5.QtWidgets import QLabel, QMessageBox, QTableWidget, QTableWidgetItem, QHeaderView, QRadioButton, QFileDialog, \
+    QDesktopWidget
 from PyQt5.QtCore import Qt, QThread
 import pandas as pd
 import json
@@ -26,10 +27,12 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         QtWidgets.QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
+        #self.resize(300,1000)
+        self.resize(QDesktopWidget().availableGeometry(self).size() * 1.0)
         self.radioButtons = self.show_all_radio_buttons()
         self.menu_button.clicked.connect(lambda: self.toggle_menu(250, True))
         self.Btn_1.clicked.connect(lambda: self.navigate_to_view_all('Display All Vulnerabilities'))
-        self.Btn_3.clicked.connect(lambda: self.navigate_to_fix('Available Fixes'))
+        self.Btn_3.clicked.connect(lambda: self.navigate_to_fix('Check and Fix'))
         self.Btn_4.clicked.connect(lambda: self.navigate_to_add_new('Add New Vulnerability'))
         self.Btn_fix.clicked.connect(lambda: self.fix_vulnerability())
         self.Btn_check.clicked.connect(lambda: self.check_vulnerability())
@@ -87,13 +90,15 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         font = self.Table_Cve.horizontalHeader().font()
         font.setBold(True)
         self.Table_Cve.horizontalHeader().setFont(font)
-        self.Table_Cve.horizontalHeader().setStyleSheet("color: rgb(0, 0, 0)")
-        self.Table_Cve.verticalHeader().setStyleSheet("color: rgb(0, 0, 0)")
+        self.Table_Cve.horizontalHeader().setStyleSheet("color: rgb(255, 255, 255)")
+        self.Table_Cve.verticalHeader().setStyleSheet("color: rgb(255, 255, 255)")
         # Add data into the table
         for i in range(len(cve)):
+            self.Table_Cve.setColumnWidth(i, 150)
             for j in range(len(cve.columns)):
                 item = QTableWidgetItem(str(cve.iloc[i, j]))
                 item.setTextAlignment(Qt.AlignCenter)
+                self.Table_Cve.setColumnWidth(j, 150)
                 self.Table_Cve.setItem(i, j, item)
 
     def navigate_to_fix(self, msg):
@@ -309,7 +314,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             #button.setFixedWidth(190)
             #button.setFixedHeight(60)
             button.setGeometry(QtCore.QRect(0, ay, 190, 50))
-            button.setStyleSheet('color: rgb(255,255,255)')
+            button.setStyleSheet('color: rgb(255,255,255); font-size: 18px')
             button.show()
             button.toggled.connect(self.radio_button_action)
             radio_buttons[name] = [button, False]
