@@ -1,5 +1,10 @@
 import subprocess
 
+
+def get_name():
+	return "CVE-2019-13139"
+
+
 def check():
 	log = ""
 	try:
@@ -8,11 +13,11 @@ def check():
 		#print(output)
 		log += "docker version :" + output
 		docker_version = output.strip().split()[2].split(',')[0]
-		if docker_version < '18.09.3':
-			log += "Vulnerable to the runc vulnerability" + "\n"
+		if docker_version < '18.09.4':
+			log += "Vulnerable" + "\n"
 			return True, log
 		else:
-			log += "Safe from the runc vulnerability" + "\n"
+			log += "safe" + "\n"
 			return False, log
 	except Exception as e:
 		log += "Docker not installed" + "\n"
@@ -30,7 +35,7 @@ def fix():
 			get_versions = "sudo apt-get update && apt-cache madison docker-ce | awk '{ print $3 }'"
 			output = subprocess.check_output(get_versions, shell=True).decode()
 			for line in output.split("\n"):
-				if '18.09.3' in line:
+				if '18.09.4' in line:
 					version = line
 					break
 			log += version + "\n"

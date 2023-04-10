@@ -3,29 +3,47 @@ from PyQt5 import QtCore, QtGui, QtWidgets, uic
 from PyQt5.QtCore import QPropertyAnimation
 from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QLabel, QMessageBox, QTableWidget, QTableWidgetItem, QHeaderView, QRadioButton, QFileDialog
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QThread
 import pandas as pd
 import json
 import os
+from functools import partial
+from PySide2.QtCore import Signal
+
+import CVE_2019_13139 as CVE1
+import CVE_2019_5736 as CVE2
 
 pyQTfileName = "test_ui.ui"
 
 Ui_MainWindow, QtBaseClass = uic.loadUiType(pyQTfileName)
 
+##radioButtons = dict()
+
 
 class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
+        ##super().__init__()
         QtWidgets.QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
-        self.radioButtons = []
+        self.radioButtons = self.show_all_radio_buttons()
         self.menu_button.clicked.connect(lambda: self.toggle_menu(250, True))
         self.Btn_1.clicked.connect(lambda: self.navigate_to_view_all('Display All Vulnerabilities'))
         self.Btn_3.clicked.connect(lambda: self.navigate_to_fix('Available Fixes'))
         self.Btn_4.clicked.connect(lambda: self.navigate_to_add_new('Add New Vulnerability'))
         self.Btn_fix.clicked.connect(lambda: self.fix_vulnerability())
-    ## support from https://github.com/Wanderson-Magalhaes/Toggle_Burguer_Menu_Python_PySide2/blob/master/ui_functions.py
+        self.Btn_check.clicked.connect(lambda: self.check_vulnerability())
 
+    def radio_button_action(self):
+        text = self.sender().text()
+        print('state changed '+text)
+        if self.radioButtons[text][1]:
+            self.Btn_fix.setEnabled(True)
+        else:
+            self.Btn_fix.setEnabled(False)
+
+
+    ## support from https://github.com/Wanderson-Magalhaes/Toggle_Burguer_Menu_Python_PySide2/blob/master/ui_functions.py
     def toggle_menu(self, maxWidth, enable):
         if enable:
 
@@ -81,15 +99,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     def navigate_to_fix(self, msg):
         self.Page_widgets.setCurrentWidget(self.page_4)
         self.page_4_label.setText(msg)
-        ## create new button if new was added
-        with open('test_data.json', 'r') as f:
-            data = json.load(f)
-
-        # Transfer into df and get shape
-        cve = pd.DataFrame(data)
-        cve_names = cve.loc[:, 'CVE'].tolist()
-        print(cve_names)
-        self.radioButtons = self.show_all_radio_buttons(cve_names)
+        self.Btn_fix.setEnabled(False)
 
     def navigate_to_add_new(self, msg):
         self.Page_widgets.setCurrentWidget(self.page_5)
@@ -107,6 +117,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         fnamelist = fname[0].split('/')
         # set button text as file name
         self.btn_browser.setText(fnamelist[len(fnamelist)-1])
+
 
     def cve_add(self):
         # Get attributes fo new cve
@@ -174,7 +185,6 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def fix_vulnerability(self):
         # Import data
-        print('calling new function')
         with open('test_data.json', 'r') as f:
             data = json.load(f)
 
@@ -183,32 +193,116 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         cve_row = cve.shape[0]
         cve_col = cve.shape[1]
         msgbox = QMessageBox()
+        msgbox1 = QMessageBox()
+        msgbox1.setWindowTitle('Log Box')
         msg = ''
-        description = ''
         str_val = ' '
-        for i, radioButton in enumerate(self.radioButtons):
-            if radioButton.isChecked():
-                msg = radioButton.text()
+        for i, (k, v) in enumerate(self.radioButtons.items()):
+            button = v[0]
+            if button.isChecked():
+                msg = button.text()
                 val = cve.loc[cve['CVE'] == msg, 'Script'].iloc[0]
-                description = cve.loc[cve['CVE'] == msg, 'Description'].iloc[0]
-                str_val = str(val)
-                print(str_val)
+                str_val = str(val).split('.')[0]
+                print('%%%%'+str_val)
                 break
-        msgbox.setText(description)
-        msgbox.setInformativeText("Do you want to proceed with fixing this vulnerability?");
+        msgbox.setText("Do you want to proceed with fixing this vulnerability?");
         msgbox.setStandardButtons(msgbox.Ok | msgbox.Cancel);
-        msgbox.setWindowTitle('Description')
+        msgbox.setWindowTitle('Message')
         ##msgbox.setDefaultButton(msgbox.Ok);
         ret = msgbox.exec_()
 
         if ret == int(msgbox.Ok):
-            print('user clicked ok to execute ' + str_val)
-            os.system("python3 "+ str_val) #invoke .py file to fix
+            print('user clicked ok to fix ' + str_val)
+            if CVE1.get_name() == str_val:
+                result, log = CVE1.fix()
+                if result:
+                    msgbox1.setText(log+'\n'+"Successful Fix!!")
+                    msgbox1.setStandardButtons(msgbox1.Ok)
+                else:
+                    msgbox1.setText(log+'\n'+'Failed!!')
+            elif CVE2.get_name() == str_val:
+                result, log = CVE2.fix()
+                if result:
+                    msgbox1.setText(log + '\n' + "Successful Fix!!")
+                    msgbox1.setStandardButtons(msgbox1.Ok)
+                else:
+                    msgbox1.setText(log + '\n' + 'Failed!!')
+            else:
+                msgbox1.setText('No fix available')
+            msgbox1.exec_()
+
         else:
             print('user clicked cancel')
 
-    def show_all_radio_buttons(self, cve_names):
-        radio_buttons = []
+    def check_vulnerability(self):
+        with open('test_data.json', 'r') as f:
+            data = json.load(f)
+
+        # Transfer into df and get shape
+        cve = pd.DataFrame(data)
+        msgbox = QMessageBox()
+        msgbox1 = QMessageBox()
+        msgbox1.setWindowTitle('Log Box')
+        msg = ''
+        description = ''
+        str_val = ' '
+        for i, (k, v) in enumerate(self.radioButtons.items()):
+            button = v[0]
+            if button.isChecked():
+                msg = button.text()
+                val = cve.loc[cve['CVE'] == msg, 'Script'].iloc[0]
+                description = cve.loc[cve['CVE'] == msg, 'Description'].iloc[0]
+                str_val = str(val).split('.')[0]
+                print('%%%%'+str_val)
+                break
+        msgbox.setText(description)
+        msgbox.setInformativeText("Do you want to proceed with checking for this vulnerability?");
+        msgbox.setStandardButtons(msgbox.Ok | msgbox.Cancel);
+        msgbox.setWindowTitle('Description')
+        ##msgbox.setDefaultButton(msgbox.Ok);
+        ret = msgbox.exec_()
+        if ret == int(msgbox.Ok):
+            print('checking......')
+            if CVE1.get_name() == str_val:
+                result, log = CVE1.check()
+                if result:
+                    msgbox1.setText('Checking...\n'+log+'\n'+"Vulnerability found!!")
+                    msgbox1.setStandardButtons(msgbox1.Ok)
+                    self.radioButtons[str_val][1] = True
+                    self.Btn_fix.setEnabled(True)
+
+                else:
+                    self.Btn_fix.setEnabled(False)
+                    self.radioButtons[str_val][1] = False
+                    msgbox1.setText('Checking...\n'+log+'\n'+'Vulnerability not found')
+            elif CVE2.get_name() == str_val:
+                result, log = CVE2.check()
+                if result:
+                    msgbox1.setText('Checking...\n'+log + '\n' + "Vulnerability found!!")
+                    msgbox1.setStandardButtons(msgbox1.Ok)
+                    self.radioButtons[str_val][1] = True
+                    self.Btn_fix.setEnabled(True)
+                else:
+                    self.Btn_fix.setEnabled(False)
+                    self.radioButtons[str_val][1] = False
+                    msgbox1.setText('Checking...\n'+log + '\n' + 'Vulnerability not found!!')
+            else:
+                self.Btn_fix.setEnabled(False)
+                msgbox1.setText('No checking available')
+            msgbox1.exec_()
+            print(self.radioButtons)
+        else:
+            print('Checking Cancelled!!')
+
+    def show_all_radio_buttons(self):
+        with open('test_data.json', 'r') as f:
+            data = json.load(f)
+
+        # Transfer into df and get shape
+        cve = pd.DataFrame(data)
+        cve_names = cve.loc[:, 'CVE'].tolist()
+        print(cve_names)
+        radio_buttons = dict()
         for i, name in enumerate(cve_names):
             ay = i*50+50
             button = QRadioButton(name, self.page_4)
@@ -217,7 +311,8 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             button.setGeometry(QtCore.QRect(0, ay, 190, 50))
             button.setStyleSheet('color: rgb(255,255,255)')
             button.show()
-            radio_buttons.append(button)
+            button.toggled.connect(self.radio_button_action)
+            radio_buttons[name] = [button, False]
         return radio_buttons
 
 
