@@ -30,7 +30,6 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         #self.resize(300,1000)
         self.resize(QDesktopWidget().availableGeometry(self).size() * 1.0)
         self.radioButtons = self.show_all_radio_buttons()
-        self.page_1_label.setText('SURE-FIX\nSEcure Ubuntu Bionic\nREmedying Docker Vulnerabilities through Targeted FIXes')
         self.menu_button.clicked.connect(lambda: self.toggle_menu(250, True))
         self.Btn_1.clicked.connect(lambda: self.navigate_to_view_all('Display All Vulnerabilities'))
         self.Btn_3.clicked.connect(lambda: self.navigate_to_fix('Check and Fix'))
@@ -88,19 +87,23 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.Table_Cve.setRowCount(cve_row)
         self.Table_Cve.setHorizontalHeaderLabels(cve.columns.values)
         self.Table_Cve.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
-        font = self.Table_Cve.horizontalHeader().font()
-        font.setBold(True)
-        self.Table_Cve.horizontalHeader().setFont(font)
+        # font = self.Table_Cve.horizontalHeader().font()
+        # font.setBold(True)
+        # self.Table_Cve.horizontalHeader().setFont(font)
         self.Table_Cve.horizontalHeader().setStyleSheet("color: rgb(0, 0, 0)")
         self.Table_Cve.verticalHeader().setStyleSheet("color: rgb(0, 0, 0)")
+
         # Add data into the table
         for i in range(len(cve)):
-            self.Table_Cve.setColumnWidth(i, 150)
+            # self.Table_Cve.setColumnWidth(i, 150)
             for j in range(len(cve.columns)):
                 item = QTableWidgetItem(str(cve.iloc[i, j]))
                 item.setTextAlignment(Qt.AlignCenter)
-                self.Table_Cve.setColumnWidth(j, 150)
+                # self.Table_Cve.setColumnWidth(j, 150)
                 self.Table_Cve.setItem(i, j, item)
+
+
+
 
     def navigate_to_fix(self, msg):
         self.Page_widgets.setCurrentWidget(self.page_4)
@@ -179,6 +182,8 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
                 OldData[index]['Link'] = NewLink
             if len(NewScript) > 0 and NewScript != 'Browser':
                 OldData[index]['Script'] = NewScript
+            else:
+                OldData[index]['Script'] = 'Not available'
 
             # update json file
             with open('test_data.json', 'w') as f_new:
@@ -202,14 +207,11 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         msgbox1 = QMessageBox()
         msgbox1.setWindowTitle('Log Box')
         msg = ''
-        str_val = ' '
         for i, (k, v) in enumerate(self.radioButtons.items()):
             button = v[0]
             if button.isChecked():
                 msg = button.text()
-                val = cve.loc[cve['CVE'] == msg, 'CVE'].iloc[0]
-                str_val = str(val).split('.')[0]
-                print('%%%%'+str_val)
+                print('%%%%'+msg)
                 break
         msgbox.setText("Do you want to proceed with fixing this vulnerability?");
         msgbox.setStandardButtons(msgbox.Ok | msgbox.Cancel);
@@ -218,15 +220,15 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         ret = msgbox.exec_()
 
         if ret == int(msgbox.Ok):
-            print('user clicked ok to fix ' + str_val)
-            if CVE1.get_name() == str_val:
+            print('user clicked ok to fix ' + msg)
+            if CVE1.get_name() == msg:
                 result, log = CVE1.fix()
                 if result:
                     msgbox1.setText(log+'\n'+"Successful Fix!!")
                     msgbox1.setStandardButtons(msgbox1.Ok)
                 else:
                     msgbox1.setText(log+'\n'+'Failed!!')
-            elif CVE2.get_name() == str_val:
+            elif CVE2.get_name() == msg:
                 result, log = CVE2.fix()
                 if result:
                     msgbox1.setText(log + '\n' + "Successful Fix!!")
@@ -251,46 +253,44 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         msgbox1.setWindowTitle('Log Box')
         msg = ''
         description = ''
-        str_val = ' '
         for i, (k, v) in enumerate(self.radioButtons.items()):
             button = v[0]
             if button.isChecked():
                 msg = button.text()
-                val = cve.loc[cve['CVE'] == msg, 'CVE'].iloc[0]
                 description = cve.loc[cve['CVE'] == msg, 'Description'].iloc[0]
-                str_val = str(val).split('.')[0]
-                print('%%%%'+str_val)
+                print('%%%%'+msg)
                 break
         msgbox.setText(description)
-        msgbox.setInformativeText("Do you want to proceed with checking for this vulnerability?");
-        msgbox.setStandardButtons(msgbox.Ok | msgbox.Cancel);
+        msgbox.setInformativeText("Do you want to proceed with checking for this vulnerability?")
+        msgbox.setStandardButtons(msgbox.Ok | msgbox.Cancel)
         msgbox.setWindowTitle('Description')
         ##msgbox.setDefaultButton(msgbox.Ok);
         ret = msgbox.exec_()
         if ret == int(msgbox.Ok):
             print('checking......')
-            if CVE1.get_name() == str_val:
+            if CVE1.get_name() == msg:
                 result, log = CVE1.check()
                 if result:
                     msgbox1.setText('Checking...\n'+log+'\n'+"Vulnerability found!!")
                     msgbox1.setStandardButtons(msgbox1.Ok)
-                    self.radioButtons[str_val][1] = True
+                    self.radioButtons[msg][1] = True
                     self.Btn_fix.setEnabled(True)
 
                 else:
                     self.Btn_fix.setEnabled(False)
-                    self.radioButtons[str_val][1] = False
+                    self.Btn_fix.setStyleSheet("background-color : yellow")
+                    self.radioButtons[msg][1] = False
                     msgbox1.setText('Checking...\n'+log+'\n'+'Vulnerability not found')
-            elif CVE2.get_name() == str_val:
+            elif CVE2.get_name() == msg:
                 result, log = CVE2.check()
                 if result:
                     msgbox1.setText('Checking...\n'+log + '\n' + "Vulnerability found!!")
                     msgbox1.setStandardButtons(msgbox1.Ok)
-                    self.radioButtons[str_val][1] = True
+                    self.radioButtons[msg][1] = True
                     self.Btn_fix.setEnabled(True)
                 else:
                     self.Btn_fix.setEnabled(False)
-                    self.radioButtons[str_val][1] = False
+                    self.radioButtons[msg][1] = False
                     msgbox1.setText('Checking...\n'+log + '\n' + 'Vulnerability not found!!')
             else:
                 self.Btn_fix.setEnabled(False)
