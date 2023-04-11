@@ -207,7 +207,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             button = v[0]
             if button.isChecked():
                 msg = button.text()
-                val = cve.loc[cve['CVE'] == msg, 'Script'].iloc[0]
+                val = cve.loc[cve['CVE'] == msg, 'CVE'].iloc[0]
                 str_val = str(val).split('.')[0]
                 print('%%%%'+str_val)
                 break
@@ -256,7 +256,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             button = v[0]
             if button.isChecked():
                 msg = button.text()
-                val = cve.loc[cve['CVE'] == msg, 'Script'].iloc[0]
+                val = cve.loc[cve['CVE'] == msg, 'CVE'].iloc[0]
                 description = cve.loc[cve['CVE'] == msg, 'Description'].iloc[0]
                 str_val = str(val).split('.')[0]
                 print('%%%%'+str_val)
