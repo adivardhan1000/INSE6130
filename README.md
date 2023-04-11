@@ -21,8 +21,6 @@ Security application development team :
 
 > sudo apt install python3.8
 
-> sudo apt install python3.8
-
 > sudo apt install python3.8-venv
 
 > python3.8 -m venv myenv
