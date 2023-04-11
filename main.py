@@ -30,6 +30,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         #self.resize(300,1000)
         self.resize(QDesktopWidget().availableGeometry(self).size() * 1.0)
         self.radioButtons = self.show_all_radio_buttons()
+        self.page_1_label.setText('SURE-FIX\nSEcure Ubuntu Bionic\nREmedying Docker Vulnerabilities through Targeted FIXes')
         self.menu_button.clicked.connect(lambda: self.toggle_menu(250, True))
         self.Btn_1.clicked.connect(lambda: self.navigate_to_view_all('Display All Vulnerabilities'))
         self.Btn_3.clicked.connect(lambda: self.navigate_to_fix('Check and Fix'))
@@ -278,7 +279,6 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
                 else:
                     self.Btn_fix.setEnabled(False)
-                    self.Btn_fix.setStyleSheet("background-color : yellow")
                     self.radioButtons[msg][1] = False
                     msgbox1.setText('Checking...\n'+log+'\n'+'Vulnerability not found')
             elif CVE2.get_name() == msg:
