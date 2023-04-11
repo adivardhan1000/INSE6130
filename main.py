@@ -30,6 +30,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         #self.resize(300,1000)
         self.resize(QDesktopWidget().availableGeometry(self).size() * 1.0)
         self.radioButtons = self.show_all_radio_buttons()
+        self.page_1_label.setText('SURE-FIX\nSEcure Ubuntu Bionic\nREmedying Docker Vulnerabilities through Targeted FIXes')
         self.menu_button.clicked.connect(lambda: self.toggle_menu(250, True))
         self.Btn_1.clicked.connect(lambda: self.navigate_to_view_all('Display All Vulnerabilities'))
         self.Btn_3.clicked.connect(lambda: self.navigate_to_fix('Check and Fix'))
@@ -90,8 +91,8 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         font = self.Table_Cve.horizontalHeader().font()
         font.setBold(True)
         self.Table_Cve.horizontalHeader().setFont(font)
-        self.Table_Cve.horizontalHeader().setStyleSheet("color: rgb(0, 0, 0)")
-        self.Table_Cve.verticalHeader().setStyleSheet("color: rgb(0, 0, 0)")
+        self.Table_Cve.horizontalHeader().setStyleSheet("color: rgb(255, 255, 255)")
+        self.Table_Cve.verticalHeader().setStyleSheet("color: rgb(255, 255, 255)")
         # Add data into the table
         for i in range(len(cve)):
             self.Table_Cve.setColumnWidth(i, 150)
