@@ -29,8 +29,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         #self.resize(300,1000)
         self.resize(QDesktopWidget().availableGeometry(self).size() * 1.0)
-        self.radioButtons = self.show_all_radio_buttons()
-        self.page_1_label.setText('SURE-FIX\nSEcure Ubuntu Bionic\nREmedying Docker Vulnerabilities through Targeted FIXes')
+
         self.menu_button.clicked.connect(lambda: self.toggle_menu(250, True))
         self.Btn_1.clicked.connect(lambda: self.navigate_to_view_all('Display All Vulnerabilities'))
         self.Btn_3.clicked.connect(lambda: self.navigate_to_fix('Check and Fix'))
@@ -109,6 +108,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
     def navigate_to_fix(self, msg):
         self.Page_widgets.setCurrentWidget(self.page_4)
         self.page_4_label.setText(msg)
+        self.radioButtons = self.show_all_radio_buttons()
         self.Btn_fix.setEnabled(False)
 
     def navigate_to_add_new(self, msg):
@@ -131,30 +131,33 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def cve_add(self):
         # Get attributes fo new cve
-        NewName = self.cve_name.toPlainText()
-        NewDesc = self.cve_description.toPlainText()
-        NewCVSS = float(self.cve_cvss.toPlainText())
-        NewLink = self.cve_link.toPlainText()
-        NewScript = self.btn_browser.text()
+        try:
+            NewName = self.cve_name.toPlainText()
+            NewDesc = self.cve_description.toPlainText()
+            NewCVSS = float(self.cve_cvss.toPlainText())
+            NewLink = self.cve_link.toPlainText()
+            NewScript = self.btn_browser.text()
 
-        # Store as dict
-        NewDataDict = dict(CVE=NewName,
-                    Description=NewDesc,
-                    CVSS=NewCVSS,
-                    Link=NewLink,
-                    Script=NewScript)
+            # Store as dict
+            NewDataDict = dict(CVE=NewName,
+                        Description=NewDesc,
+                        CVSS=NewCVSS,
+                        Link=NewLink,
+                        Script=NewScript)
 
-        # update json file
-        with open('test_data.json', 'r') as f:
-            OldData = json.load(f)
-        if len(OldData) > 1:
-            OldData.append(NewDataDict)
-        else:
-            OldData = list(OldData)
-        with open('test_data.json', 'w') as f_new:
-            json.dump(OldData, f_new)
-        self.outstate.setStyleSheet('color: rgb(255,255,255)')
-        self.outstate.setPlainText('Success!')
+            # update json file
+            with open('test_data.json', 'r') as f:
+                OldData = json.load(f)
+            if len(OldData) > 1:
+                OldData.append(NewDataDict)
+            else:
+                OldData = list(OldData)
+            with open('test_data.json', 'w') as f_new:
+                json.dump(OldData, f_new)
+            self.outstate.setStyleSheet('color: rgb(255,255,255)')
+            self.outstate.setPlainText('Success!')
+        except Exception as e:
+            self.outstate.setPlainText('Failed! The fields are empty or not of correct data type. Try again!')
     
     def cve_modify(self):
         # Get attributes fo new cve
@@ -279,6 +282,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
 
                 else:
                     self.Btn_fix.setEnabled(False)
+                    self.Btn_fix.setStyleSheet("background-color : yellow")
                     self.radioButtons[msg][1] = False
                     msgbox1.setText('Checking...\n'+log+'\n'+'Vulnerability not found')
             elif CVE2.get_name() == msg:
