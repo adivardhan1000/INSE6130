@@ -91,8 +91,8 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
         font = self.Table_Cve.horizontalHeader().font()
         font.setBold(True)
         self.Table_Cve.horizontalHeader().setFont(font)
-        self.Table_Cve.horizontalHeader().setStyleSheet("color: rgb(255, 255, 255)")
-        self.Table_Cve.verticalHeader().setStyleSheet("color: rgb(255, 255, 255)")
+        self.Table_Cve.horizontalHeader().setStyleSheet("color: rgb(0, 0, 0)")
+        self.Table_Cve.verticalHeader().setStyleSheet("color: rgb(0, 0, 0)")
         # Add data into the table
         for i in range(len(cve)):
             self.Table_Cve.setColumnWidth(i, 150)
