@@ -13,7 +13,7 @@ from PySide2.QtCore import Signal
 
 import CVE_2019_13139 as CVE1
 import CVE_2019_5736 as CVE2
-
+import socketexploitfix as CVE3
 pyQTfileName = "test_ui.ui"
 
 Ui_MainWindow, QtBaseClass = uic.loadUiType(pyQTfileName)
@@ -236,6 +236,13 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
                     msgbox1.setStandardButtons(msgbox1.Ok)
                 else:
                     msgbox1.setText(log + '\n' + 'Failed!!')
+            elif CVE3.get_name() == msg:
+                result, log = CVE2.fix()
+                if result:
+                    msgbox1.setText(log + '\n' + "Successful Fix!!")
+                    msgbox1.setStandardButtons(msgbox1.Ok)
+                else:
+                    msgbox1.setText(log + '\n' + 'Failed!!')
             else:
                 msgbox1.setText('No fix available')
             msgbox1.exec_()
@@ -292,6 +299,18 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
                     self.Btn_fix.setEnabled(False)
                     self.radioButtons[msg][1] = False
                     msgbox1.setText('Checking...\n'+log + '\n' + 'Vulnerability not found!!')
+            elif CVE3.get_name() == msg:
+                result, log = CVE3.check()
+                if result:
+                    msgbox1.setText('Checking...\n'+log + '\n' + "Vulnerability found!!")
+                    msgbox1.setStandardButtons(msgbox1.Ok)
+                    self.radioButtons[msg][1] = True
+                    self.Btn_fix.setEnabled(True)
+                else:
+                    self.Btn_fix.setEnabled(False)
+                    self.radioButtons[msg][1] = False
+                    msgbox1.setText('Checking...\n'+log + '\n' + 'Vulnerability not found!!')
+
             else:
                 self.Btn_fix.setEnabled(False)
                 msgbox1.setText('No checking available')
@@ -314,7 +333,7 @@ class MyApp(QtWidgets.QMainWindow, Ui_MainWindow):
             button = QRadioButton(name, self.page_4)
             #button.setFixedWidth(190)
             #button.setFixedHeight(60)
-            button.setGeometry(QtCore.QRect(0, ay, 190, 50))
+            button.setGeometry(QtCore.QRect(0, ay, 300, 50))
             button.setStyleSheet('color: rgb(255,255,255); font-size: 18px')
             button.show()
             button.toggled.connect(self.radio_button_action)
