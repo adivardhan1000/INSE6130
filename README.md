@@ -50,3 +50,10 @@ These steps are written based on the assumption that many older ubuntu versions 
 1. Each file is written for a particular CVE. The file has 2 functions: check() and fix(). 
 2. check() returns True if the docker is vulnerable to that CVE otherwise False. It also returns the logs when the script has ran.
 3. fix() returns True if the fix was successful without any errors otherwise it returns False. It also returns the logs when the script has ran.
+
+# Demo
+https://user-images.githubusercontent.com/48666834/232841572-d03bab0d-9bc6-48e1-ba96-6d3c8222a506.mp4
+
+
+
+
